@@ -17,15 +17,24 @@
   <header class="header">
     <div class="container header-inner">
       <a href="#home" class="logo">ОператорПлюс</a>
-      <nav class="nav">
+      <nav class="nav" aria-label="Навигация">
         <a href="#home">Главная</a>
         <a href="#features">Возможности</a>
         <a href="#process">Как работаем</a>
+        <a href="#shop">Магазин</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#blog">Блог</a>
         <a href="#about">О нас</a>
         <a href="#cases">Кейсы</a>
         <a href="#benefits">Преимущества</a>
         <a href="#contact">Контакты</a>
       </nav>
+
+      <button class="cart-btn" type="button" data-action="open-cart" aria-label="Открыть корзину">
+        <span class="cart-btn__icon" aria-hidden="true">🛒</span>
+        <span class="cart-btn__label">Корзина</span>
+        <span class="cart-badge" data-cart-count aria-label="Товаров в корзине">0</span>
+      </button>
     </div>
   </header>
 
@@ -119,6 +128,88 @@
       </div>
     </section>
 
+    <section id="shop" class="page">
+      <div class="page-inner">
+        <div class="container section">
+          <p class="section-label">Мерч</p>
+          <h2>Космический магазин «ОператорПлюс»</h2>
+          <p class="section-intro">Каталог генерируется из массива JavaScript. Нажмите на картинку или название товара, чтобы открыть подробности. Корзина сохраняется в localStorage.</p>
+
+          <div class="filters" role="group" aria-label="Фильтр каталога">
+            <button class="filter-btn is-active" type="button" data-filter="all">Все</button>
+            <button class="filter-btn" type="button" data-filter="books">Книги</button>
+            <button class="filter-btn" type="button" data-filter="merch">Мерч</button>
+            <button class="filter-btn" type="button" data-filter="tech">Техника</button>
+            <button class="filter-btn" type="button" data-filter="cheap">Дешёвые</button>
+            <button class="filter-btn" type="button" data-filter="expensive">Дорогие</button>
+          </div>
+
+          <div class="shop-grid" data-shop-grid aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="page">
+      <div class="page-inner">
+        <div class="container section">
+          <p class="section-label">Кейсы</p>
+          <h2>Портфолио</h2>
+          <p class="section-intro">Фильтрация карточек работает мгновенно без перезагрузки. Можно включать несколько тегов одновременно.</p>
+
+          <div class="filters" role="group" aria-label="Фильтр портфолио">
+            <button class="filter-btn is-active" type="button" data-portfolio-filter="all">Все</button>
+            <button class="filter-btn" type="button" data-portfolio-filter="web">Веб-дизайн</button>
+            <button class="filter-btn" type="button" data-portfolio-filter="graphic">Графика</button>
+            <button class="filter-btn" type="button" data-portfolio-filter="branding">Брендинг</button>
+          </div>
+
+          <div class="portfolio-grid" data-portfolio-grid aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="page">
+      <div class="page-inner">
+        <div class="reading-progress" aria-hidden="true">
+          <div class="reading-progress__bar" data-reading-bar></div>
+        </div>
+
+        <div class="container section">
+          <p class="section-label">Блог</p>
+          <h2>О заметках и внедрении</h2>
+          <p class="section-intro">Ниже — посты (генерируются скриптом) и комментарии с валидацией. Индикатор прогресса чтения заполняется при прокрутке.</p>
+
+          <div class="blog-grid" data-blog-grid aria-live="polite"></div>
+
+          <article class="post" data-post aria-live="polite"></article>
+
+          <section class="comments" aria-label="Комментарии">
+            <h3 class="comments__title">Комментарии</h3>
+            <form class="comment-form" data-comment-form>
+              <div class="comment-form__row">
+                <label class="comment-form__label">
+                  <span>Имя</span>
+                  <input class="comment-form__input" name="name" type="text" minlength="2" placeholder="Например: Алексей" required>
+                </label>
+              </div>
+              <div class="comment-form__row">
+                <label class="comment-form__label">
+                  <span>Комментарий</span>
+                  <textarea class="comment-form__textarea" name="text" rows="4" placeholder="Ваш комментарий..." required></textarea>
+                </label>
+              </div>
+              <div class="comment-form__actions">
+                <button class="btn btn-primary" type="submit">Отправить</button>
+                <p class="form-hint" data-form-hint role="status" aria-live="polite"></p>
+              </div>
+            </form>
+
+            <div class="comment-list" data-comment-list></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section id="about" class="page">
       <div class="page-inner">
         <div class="container section">
@@ -204,6 +295,9 @@
           <a href="#home">Главная</a>
           <a href="#features">Возможности</a>
           <a href="#process">Как работаем</a>
+          <a href="#shop">Магазин</a>
+          <a href="#portfolio">Портфолио</a>
+          <a href="#blog">Блог</a>
           <a href="#about">О нас</a>
           <a href="#cases">Кейсы</a>
           <a href="#benefits">Преимущества</a>
@@ -216,5 +310,36 @@
       </div>
     </div>
   </footer>
+
+  <button class="to-top" type="button" data-action="to-top" aria-label="Прокрутить к началу">↑</button>
+
+  <div class="modal" data-modal="product" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Детали товара">
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div class="modal__panel" role="document">
+      <button class="modal__close" type="button" data-action="close-modal" aria-label="Закрыть">×</button>
+      <div class="product-modal" data-product-modal></div>
+    </div>
+  </div>
+
+  <div class="modal" data-modal="cart" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Корзина">
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div class="modal__panel" role="document">
+      <button class="modal__close" type="button" data-action="close-modal" aria-label="Закрыть">×</button>
+      <div class="cart-modal">
+        <div class="cart-modal__head">
+          <h3>Корзина</h3>
+          <p class="cart-modal__sum">Итого: <span data-cart-sum>0</span> ₽</p>
+        </div>
+        <div class="cart-list" data-cart-list></div>
+        <div class="cart-modal__actions">
+          <button class="btn btn-secondary" type="button" data-action="clear-cart">Очистить</button>
+          <button class="btn btn-primary" type="button" data-action="checkout">Оформить</button>
+          <p class="form-hint" data-cart-hint role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
